@@ -20,38 +20,23 @@ namespace IOTNodesvc
 
         // TODO: Add your service operations here
         [OperationContract]
-        IOTNodeData GetIotData();
+        List<IOTNodeData> GetIotData();
     }
 
-    // Use a data contract as illustrated in the sample below to add composite types to service operations.
-    [DataContract]
-    public class SensorData
-    {
-        public string sensorId; 
-        public string value;
-        public SensorData()
-        {
-            sensorId = new string('c', 20);
-            value    = new string('c', 20);
-        }
-    }
-
-
+    //  add composite types to service operations.
     [DataContract]
     public class IOTNodeData
     {
         bool boolValue = true;
-        string strIotNodeId = "iot-node1";
-        
-        public SensorData [] sensorData;
+        public string strIotNodeId ;
+        public string sensorId;
+        public string value;
+
         public IOTNodeData()
         {
-            sensorData = new SensorData[4];
-            sensorData[0] = new SensorData();
-            sensorData[1] = new SensorData();
-            sensorData[2] = new SensorData();
-            sensorData[3] = new SensorData();
-
+            strIotNodeId = new string('c', 20);
+            sensorId = new string('c', 20);
+            value = new string('c', 20);
         }
 
         [DataMember]
@@ -67,6 +52,21 @@ namespace IOTNodesvc
             get { return strIotNodeId; }
             set { strIotNodeId = value; }
         }
+
+        [DataMember]
+        public string SensorId
+        {
+            get { return sensorId; }
+            set { sensorId = ""; }
+        }
+
+        [DataMember]
+        public string Value
+        {
+            get { return value; }
+            set { value = ""; }
+        }
+
     }
 
 }
